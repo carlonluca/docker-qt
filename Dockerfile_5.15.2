@@ -1,5 +1,10 @@
 FROM ubuntu:20.04
 ENTRYPOINT ["/bin/bash"]
+WORKDIR /root
+
+ARG TARGETARCH
+
+COPY qt_export/Qt-$TARGETARCH.tar.xz /root/
 
 RUN \
     export DEBIAN_FRONTEND=noninteractive && \
@@ -25,20 +30,8 @@ RUN \
     rm -rf /var/lib/apt/lists/*
 
 RUN \
-    set -eux && \
     cd /opt && \
-    wget --no-check-certificate -q http://download.qt.io/official_releases/qt/5.15/5.15.2/single/qt-everywhere-src-5.15.2.tar.xz && \
-    tar xf qt-everywhere-src-5.15.2.tar.xz && \
-    rm qt-everywhere-src-5.15.2.tar.xz
-
-RUN \
-    cd /opt/qt-everywhere-src-5.15.2 && \
-    ./configure -opensource -confirm-license -release -nomake tests -nomake examples \
-    -qt-zlib -qt-libjpeg -qt-libpng -xcb -qt-freetype -qt-pcre -qt-harfbuzz && \
-    make -j $(($(nproc)+4)) && \
-    make install && \
-    cd /opt && \
-    rm -rf qt-everywhere-src-5.15.2 && \
-    exit 0
+    tar xvfp /root/Qt-$TARGETARCH.tar.xz && \
+    rm /root/Qt-$TARGETARCH.tar.xz
 
 ENV PATH="${PATH}:/usr/local/Qt-5.15.2/bin"
