@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wget --no-check-certificate -q http://download.qt.io/official_releases/qt/5.15/5.15.2/single/qt-everywhere-src-$1.tar.xz
+wget --no-check-certificate http://download.qt.io/official_releases/qt/5.15/5.15.2/single/qt-everywhere-src-$1.tar.xz
 tar xvfp qt-everywhere-src-$1.tar.xz
 mkdir build
 cd build
