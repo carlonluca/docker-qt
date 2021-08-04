@@ -4,7 +4,7 @@ wget --no-check-certificate http://download.qt.io/official_releases/qt/5.15/5.15
 tar xvfp qt-everywhere-src-$1.tar.xz
 mkdir build
 cd build
-../qt-everywhere-src-5.15.2/configure -opensource -confirm-license -release -nomake tests -nomake examples -qt-zlib -qt-libjpeg -qt-libpng -xcb -qt-freetype -qt-pcre -qt-harfbuzz -prefix /opt/Qt-amd64-$1 -xplatform linux-aarch64-gnu-g++ -v -sysroot / -pkg-config
+../qt-everywhere-src-5.15.2/configure -opensource -confirm-license -release -nomake tests -nomake examples -qt-zlib -qt-libjpeg -qt-libpng -xcb -qt-freetype -qt-pcre -qt-harfbuzz -prefix /opt/Qt-amd64-$1 -v -pkg-config
 make -j $(($(nproc)+4))
 make install
 cd /opt
