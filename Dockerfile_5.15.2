@@ -4,7 +4,7 @@ WORKDIR /root
 
 ARG TARGETARCH
 
-COPY qt_export/Qt-$TARGETARCH.tar.xz /root/
+COPY qt_export/Qt-$TARGETARCH-5.15.2.tar.xz /root/
 
 RUN \
     export DEBIAN_FRONTEND=noninteractive && \
@@ -31,7 +31,7 @@ RUN \
 
 RUN \
     cd /opt && \
-    tar xvfp /root/Qt-$TARGETARCH.tar.xz && \
-    rm /root/Qt-$TARGETARCH.tar.xz
+    tar xvfp /root/Qt-$TARGETARCH-5.15.2.tar.xz && \
+    rm /root/Qt-$TARGETARCH-5.15.2.tar.xz
 
-ENV PATH="${PATH}:/usr/local/Qt-5.15.2/bin"
+ENV PATH="${PATH}:/opt/Qt-$TARGETARCH-5.15.2/bin"
