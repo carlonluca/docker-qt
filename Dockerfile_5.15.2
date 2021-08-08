@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-l", "-c"]
 WORKDIR /root
 
 ARG TARGETARCH
@@ -33,5 +33,22 @@ RUN \
     cd /opt && \
     tar xvfp /root/Qt-$TARGETARCH-5.15.2.tar.xz && \
     rm /root/Qt-$TARGETARCH-5.15.2.tar.xz
+
+RUN \
+    set -eux && \
+    cd /opt && \
+    wget --no-check-certificate http://download.qt.io/official_releases/qt/5.15/5.15.2/single/qt-everywhere-src-5.15.2.tar.xz && \
+    tar xf qt-everywhere-src-5.15.2.tar.xz && \
+    rm qt-everywhere-src-5.15.2.tar.xz
+
+RUN \
+    cd /opt/qt-everywhere-src-5.15.2/qtbase && \
+    ./configure -opensource -confirm-license -release -nomake tests -nomake examples \
+    -qt-zlib -qt-libjpeg -qt-libpng -xcb -qt-freetype -qt-pcre -qt-harfbuzz -prefix /opt/Qt-$TARGETARCH-5.15.2 && \
+    make -j $(($(nproc)+4)) && \
+    make install && \
+    cd /opt && \
+    rm -rf qt-everywhere-src-5.15.2 && \
+    exit 0
 
 ENV PATH="${PATH}:/opt/Qt-$TARGETARCH-5.15.2/bin"
