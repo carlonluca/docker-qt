@@ -1,12 +1,6 @@
 FROM ubuntu:focal
-ENTRYPOINT [ "/bin/bash" ]
 
 COPY sources.list /etc/apt/sources.list
-COPY build_aarch64.sh /root/build_aarch64.sh
-COPY build_amd64.sh /root/build_amd64.sh
-
-RUN chmod +x /root/build_aarch64.sh
-RUN chmod +x /root/build_amd64.sh
 
 RUN \
     export DEBIAN_FRONTEND=noninteractive && \
