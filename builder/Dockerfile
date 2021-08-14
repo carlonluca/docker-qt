@@ -20,7 +20,7 @@ RUN \
     libevent-dev:arm64 libfontconfig1-dev:arm64 libcap-dev:arm64 libpulse-dev:arm64 libudev-dev:arm64 \
     libpci-dev:arm64 libnss3-dev:arm64 libasound2-dev:arm64 libegl1-mesa-dev:arm64 gperf bison nodejs \
     libasound2-dev:arm64 libgstreamer1.0-dev:arm64 libgstreamer-plugins-base1.0-dev:arm64 \
-    libgstreamer-plugins-good1.0-dev:arm64 g++-aarch64-linux-gnu gcc-aarch64-linux-gnu && \
+    libgstreamer-plugins-good1.0-dev:arm64 g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build && \
     \
     apt-get -y install freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev \
     libnss3-dev libopus-dev libpng-dev libsqlite3-dev libssl-dev \
@@ -36,3 +36,5 @@ RUN \
     apt-get -y autoclean && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
+
+COPY toolchain.cmake /root/toolchain.cmake
