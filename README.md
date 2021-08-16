@@ -1,6 +1,8 @@
 # Intro
 
-The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64 and arm64 and to create images for Qt development.
+The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64 and arm64 and to create images for Qt development. Useful, for instance, for continuous integration:
+
+![gitlab CI](shot.png)
 
 # Images
 
@@ -46,11 +48,11 @@ Once packages are ready in the qt_export directory you can build the dev image.
 ## Qt 5
 
 ```
-docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t carlonluca/qt-dev:5.15.2 . -f Dockerfile_5.15.2
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t ... . -f Dockerfile_5.15.2
 ```
 
 ## Qt 6
 
 ```
-docker buildx build --push --platform linux/arm64/v8,linux/amd64 --build-arg QTVER=6.1.2 -t carlonluca/qt-dev:6.1.2 -f Dockerfile_6.x .
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 --build-arg QTVER=6.1.2 -t ... -f Dockerfile_6.x .
 ```
