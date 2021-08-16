@@ -1,1 +1,56 @@
-## WIP
+# Intro
+
+The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64 and arm64 and to create images for Qt development.
+
+# Images
+
+Images for some Qt versions are already available here:
+
+* https://hub.docker.com/repository/docker/carlonluca/qt-builder
+* https://hub.docker.com/repository/docker/carlonluca/qt-dev
+
+# Qt Builder
+
+## Qt 5
+
+To build Qt 5.x for x64:
+
+```
+docker run --rm -it --name qt-builder -v $PWD/qt_export:/root/export \
+    -v $(pwd)/builder/build_amd64.sh:/build_amd64.sh carlonluca/qt-builder:focal \
+    /build_amd64.sh 5.12.11 https://download.qt.io/official_releases/qt/5.12/5.12.11/single/
+```
+
+to build Qt 5.x for arm64:
+
+```
+docker run --rm -it --name qt-builder -v $PWD/qt_export:/root/export \
+    -v $(pwd)/builder/build_aarch64.sh:/build_aarch64.sh carlonluca/qt-builder:focal \
+    /build_aarch64.sh 5.12.11 https://download.qt.io/official_releases/qt/5.12/5.12.11/single/
+```
+
+## Qt 6
+
+Qt 6 requires a different crossbuild procedure, so build both archs at the same time:
+
+```
+docker run --rm -it --name qt-builder -v $PWD/qt_export:/root/export \
+    -v $(pwd)/builder/build_qt6.sh:/build_qt6.sh carlonluca/qt-builder:focal \
+    /build_qt6.sh 6.1.2 https://download.qt.io/official_releases/qt/6.1/6.1.2/single/
+```
+
+# Qt Dev Image
+
+Once packages are ready in the qt_export directory you can build the dev image.
+
+## Qt 5
+
+```
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t carlonluca/qt-dev:5.15.2 . -f Dockerfile_5.15.2
+```
+
+## Qt 6
+
+```
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 --build-arg QTVER=6.1.2 -t carlonluca/qt-dev:6.1.2 -f Dockerfile_6.x .
+```
