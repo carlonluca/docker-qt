@@ -8,7 +8,7 @@ RUN \
     apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y install build-essential && \
-    apt-get -y install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu cmake freeglut3-dev:arm64 gdb git iputils-ping \
+    apt-get -y install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu pip freeglut3-dev:arm64 gdb git iputils-ping \
     libgl1-mesa-dev:arm64 libglu1-mesa-dev:arm64 libjpeg-dev:arm64 libmysqlclient-dev:arm64 \
     libnss3-dev:arm64 libopus-dev:arm64 libpng-dev:arm64 libsqlite3-dev:arm64 libssl-dev:arm64 \
     libx11-xcb-dev:arm64 libxcb-xinerama0-dev:arm64 libxcb-xkb-dev:arm64 libxcb1-dev:arm64 \
@@ -35,6 +35,7 @@ RUN \
     apt-get -y autoremove && \
     apt-get -y autoclean && \
     apt-get -y clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    pip install --upgrade cmake
 
 COPY toolchain.cmake /root/toolchain.cmake
