@@ -13,6 +13,11 @@ Images for some Qt versions are already available here:
 
 # Qt Builder
 
+Building the Qt builder is straightforward. This is a small changelog of the versions (referring to the tags):
+
+* 1: first version that builds Qt < 6.2.0;
+* 2: includes an updated cmake that builds Qt >= 6.2.0.
+
 ## Qt 5
 
 To build Qt 5.x for x64:
