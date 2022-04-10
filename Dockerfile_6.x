@@ -25,7 +25,10 @@ RUN \
         libcap-dev libpulse-dev libudev-dev libpci-dev libnss3-dev libasound2-dev \
         libegl1-mesa-dev gperf bison nodejs && \
     apt -y install libasound2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
-        libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev libcups2-dev && \
+        libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev libcups2-dev \
+        libavformat58 libavcodec58 libavutil56 libswresample3 libswscale5 libavdevice58 \
+        libmng2 libwebp6 libxcb-xinput0 libwebpmux3 libvpx6 && \
+        \
     apt -y autoremove && \
     apt -y autoclean && \
     apt -y clean && \
