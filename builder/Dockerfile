@@ -20,7 +20,10 @@ RUN \
     libevent-dev:arm64 libfontconfig1-dev:arm64 libcap-dev:arm64 libpulse-dev:arm64 libudev-dev:arm64 \
     libpci-dev:arm64 libnss3-dev:arm64 libasound2-dev:arm64 libegl1-mesa-dev:arm64 gperf bison nodejs \
     libasound2-dev:arm64 libgstreamer1.0-dev:arm64 libgstreamer-plugins-base1.0-dev:arm64 \
-    libgstreamer-plugins-good1.0-dev:arm64 g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build && \
+    libgstreamer-plugins-good1.0-dev:arm64 libnspr4-dev:arm64 libcups2-dev:arm64 \
+    libmng-dev:arm64 libwebp-dev:arm64 libxcb-xinput-dev:arm64 libwebpmux3:arm64 libvpx-dev:arm64 \
+    libavformat-dev:arm64 libavcodec-dev:arm64 libavutil-dev:arm64 libswresample-dev:arm64 libswscale-dev:arm64 libavdevice-dev:arm64 \
+    g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build && \
     \
     apt-get -y install freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev \
     libnss3-dev libopus-dev libpng-dev libsqlite3-dev libssl-dev \
@@ -30,7 +33,9 @@ RUN \
     libicu-dev libxslt-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libxtst-dev \
     libxss-dev libdbus-1-dev libevent-dev libfontconfig1-dev libcap-dev libpulse-dev libudev-dev \
     libpci-dev libnss3-dev libasound2-dev libegl1-mesa-dev libasound2-dev libgstreamer1.0-dev \
-    libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libnspr4-dev libcups2-dev && \
+    libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libnspr4-dev libcups2-dev \
+    libavformat-dev libavcodec-dev libavutil-dev libswresample-dev libswscale-dev libavdevice-dev \
+    libmng-dev libwebp-dev libxcb-xinput-dev libwebpmux3 libvpx-dev && \
     \
     apt-get -y autoremove && \
     apt-get -y autoclean && \
