@@ -6,7 +6,7 @@ wget --no-check-certificate "$2/qt-everywhere-src-$1.tar.xz"
 tar xvfp qt-everywhere-src-$1.tar.xz
 mkdir build
 cd build
-../qt-everywhere-src-$1/configure -release -nomake examples -nomake tests -prefix /opt/Qt-amd64-$1
+../qt-everywhere-src-$1/configure -release -nomake examples -nomake tests -webengine-proprietary-codecs -prefix /opt/Qt-amd64-$1
 cmake --build . --parallel $(($(nproc)+4))
 cmake --install .
 rm -rf *
