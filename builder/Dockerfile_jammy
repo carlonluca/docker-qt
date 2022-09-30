@@ -25,6 +25,7 @@ RUN \
     libavformat-dev:arm64 libavcodec-dev:arm64 libavutil-dev:arm64 libswresample-dev:arm64 libswscale-dev:arm64 libavdevice-dev:arm64 libzstd-dev:arm64 \
     libpcre2-dev:arm64 libclang-dev:arm64 libllvm14:arm64 libxshmfence-dev:arm64 libxkbfile-dev:arm64 libbluetooth-dev:arm64 \
     libsctp-dev:arm64 libsnappy-dev:arm64 libmd4c-dev:arm64 libmd4c-html0-dev:arm64 libharfbuzz-dev:arm64 libminizip-dev:arm64 \
+    libb2-dev:arm64 libva-dev:arm64 \
     g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build cmake && \
     \
     apt-get -y install freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev \
@@ -39,7 +40,7 @@ RUN \
     libavformat-dev libavcodec-dev libavutil-dev libswresample-dev libswscale-dev libavdevice-dev \
     libmng-dev libwebp-dev libxcb-xinput-dev libwebpmux3 libvpx-dev zstd libzstd-dev \
     libpcre2-dev libclang-dev libllvm14 python3 python3-html5lib libxshmfence-dev libxkbfile-dev libbluetooth-dev \
-    libsctp-dev libsnappy-dev libmd4c-dev libmd4c-html0-dev libharfbuzz-dev libminizip-dev && \
+    libsctp-dev libsnappy-dev libmd4c-dev libmd4c-html0-dev libharfbuzz-dev libminizip-dev libb2-dev libva-dev && \
     \
     apt-get -y autoremove && \
     apt-get -y autoclean && \
