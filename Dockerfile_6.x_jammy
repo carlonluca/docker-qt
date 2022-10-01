@@ -27,7 +27,8 @@ RUN \
     apt-get -y install libasound2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
         libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev libcups2-dev \
         libavformat58 libavcodec58 libavutil56 libswresample3 libswscale5 libavdevice58 \
-        libmng2 libwebp7 libxcb-xinput0 libwebpmux3 libvpx7 && \
+        libmng2 libwebp7 libxcb-xinput0 libwebpmux3 libvpx7 libzstd1 libpcre2-32-0 libxshmfence1 libclang1 \
+        libllvm14 libxkbfile1 libbluetooth3 libsctp1 libsnappy1v5 libmd4c0 libmd4c-html0 libharfbuzz0b libminizip1 libb2-1 libva2 && \
         \
     apt-get -y autoremove && \
     apt-get -y autoclean && \
