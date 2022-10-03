@@ -1,6 +1,6 @@
 # Intro
 
-The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64 and arm64 and to create images for Qt development. Useful, for instance, for continuous integration:
+The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64 and arm64 and to create images to build Qt applications with every Qt version. This is useful, for instance, for continuous integration:
 
 ![gitlab CI](shot.png)
 
@@ -10,6 +10,10 @@ Images for some Qt versions are already available here:
 
 * https://hub.docker.com/repository/docker/carlonluca/qt-builder
 * https://hub.docker.com/repository/docker/carlonluca/qt-dev
+
+The **qt-builder** is an image to be used to cross-build Qt itself for amd64 and arm64. It includes all the headers and the libraries needed to build Qt from its sources.
+
+The **qt-dev** images are images that include a prebuilt Qt directory with its runtime dependencies for the specific architecture. This image can be used to build an application and to run it in the container.
 
 # Qt Builder
 
