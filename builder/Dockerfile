@@ -13,7 +13,7 @@ RUN \
     libnss3-dev:arm64 libopus-dev:arm64 libpng-dev:arm64 libsqlite3-dev:arm64 libssl-dev:arm64 \
     libx11-xcb-dev:arm64 libxcb-xinerama0-dev:arm64 libxcb-xkb-dev:arm64 libxcb1-dev:arm64 \
     libxcursor-dev:arm64 libxi-dev:arm64 libxml2-dev:arm64 libxrender-dev:arm64 libxslt-dev:arm64 \
-    lzip mesa-common-dev:arm64 nano perl python valgrind wget zlib1g-dev:arm64 '^libxcb.*-dev:arm64' \
+    lzip mesa-common-dev:arm64 nano perl python3 valgrind wget zlib1g-dev:arm64 '^libxcb.*-dev:arm64' \
     libxkbcommon-dev:arm64 libxkbcommon-x11-dev:arm64 wget libwayland-dev:arm64 flex bison gperf \
     libicu-dev:arm64 libxslt-dev:arm64 ruby libxcursor-dev:arm64 libxcomposite-dev:arm64 \
     libxdamage-dev:arm64 libxrandr-dev:arm64 libxtst-dev:arm64 libxss-dev:arm64 libdbus-1-dev:arm64 \
@@ -22,8 +22,11 @@ RUN \
     libasound2-dev:arm64 libgstreamer1.0-dev:arm64 libgstreamer-plugins-base1.0-dev:arm64 \
     libgstreamer-plugins-good1.0-dev:arm64 libnspr4-dev:arm64 libcups2-dev:arm64 \
     libmng-dev:arm64 libwebp-dev:arm64 libxcb-xinput-dev:arm64 libwebpmux3:arm64 libvpx-dev:arm64 \
-    libavformat-dev:arm64 libavcodec-dev:arm64 libavutil-dev:arm64 libswresample-dev:arm64 libswscale-dev:arm64 libavdevice-dev:arm64 \
-    g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build && \
+    libavformat-dev:arm64 libavcodec-dev:arm64 libavutil-dev:arm64 libswresample-dev:arm64 libswscale-dev:arm64 libavdevice-dev:arm64 libzstd-dev:arm64 \
+    libpcre2-dev:arm64 libclang-dev:arm64 libxshmfence-dev:arm64 libxkbfile-dev:arm64 libbluetooth-dev:arm64 \
+    libsctp-dev:arm64 libsnappy-dev:arm64 libharfbuzz-dev:arm64 libminizip-dev:arm64 \
+    libb2-dev:arm64 libva-dev:arm64 \
+    g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build cmake && \
     \
     apt-get -y install freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev \
     libnss3-dev libopus-dev libpng-dev libsqlite3-dev libssl-dev \
@@ -35,7 +38,9 @@ RUN \
     libpci-dev libnss3-dev libasound2-dev libegl1-mesa-dev libasound2-dev libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libnspr4-dev libcups2-dev \
     libavformat-dev libavcodec-dev libavutil-dev libswresample-dev libswscale-dev libavdevice-dev \
-    libmng-dev libwebp-dev libxcb-xinput-dev libwebpmux3 libvpx-dev && \
+    libmng-dev libwebp-dev libxcb-xinput-dev libwebpmux3 libvpx-dev zstd libzstd-dev \
+    libpcre2-dev libclang-dev python3 python3-html5lib libxshmfence-dev libxkbfile-dev libbluetooth-dev \
+    libsctp-dev libsnappy-dev libmd4c-dev libharfbuzz-dev libminizip-dev libb2-dev libva-dev && \
     \
     apt-get -y autoremove && \
     apt-get -y autoclean && \
