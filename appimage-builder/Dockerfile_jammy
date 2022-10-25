@@ -1,0 +1,17 @@
+FROM ubuntu:jammy
+RUN \
+    apt-get update \
+ && apt-get -y install python3-pip \
+                       strace \
+                       patchelf \
+                       squashfs-tools \
+                       zsync \
+                       cmake \
+ && export MAKEFLAGS="-j$(nproc)" \
+ && pip3 install appimage-builder
+
+RUN \
+    apt-get -y autoremove \
+ && apt-get -y autoclean \
+ && apt-get -y clean \
+ && rm -rf /var/lib/apt/lists/*
