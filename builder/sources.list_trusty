@@ -1,0 +1,29 @@
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty main restricted
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty main restricted
+
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-updates main restricted
+
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty universe
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty universe
+
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-updates universe
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-updates universe
+
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty multiverse
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty multiverse
+
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-updates multiverse
+
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-backports main restricted universe multiverse
+
+deb [arch=amd64] http://security.ubuntu.com/ubuntu/ trusty-security main restricted
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-security main restricted
+
+deb [arch=amd64] http://security.ubuntu.com/ubuntu/ trusty-security universe
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-security universe
+
+deb [arch=amd64] http://security.ubuntu.com/ubuntu/ trusty-security multiverse
+deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ trusty-security multiverse

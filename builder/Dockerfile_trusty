@@ -1,0 +1,41 @@
+FROM ubuntu:trusty
+
+COPY sources.list_trusty /etc/apt/sources.list
+
+RUN \
+    export DEBIAN_FRONTEND=noninteractive && \
+    dpkg --add-architecture arm64 && \
+    apt-get -y update && \
+    apt-get -y upgrade && \
+    apt-get -y install build-essential && \
+    apt-get -y install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu python3-pip gdb git iputils-ping \
+    g++-aarch64-linux-gnu gcc-aarch64-linux-gnu ninja-build cmake wget && \
+    \
+    apt-get -y install freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev \
+    libnss3-dev libopus-dev libpng-dev libsqlite3-dev libssl-dev \
+    libx11-xcb-dev libxcb-xinerama0-dev libxcb-xkb-dev libxcb1-dev \
+    libxcursor-dev libxi-dev libxml2-dev libxrender-dev libxslt-dev mesa-common-dev \
+    zlib1g-dev '^libxcb.*-dev' libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev \
+    libicu-dev libxslt-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libxtst-dev \
+    libxss-dev libdbus-1-dev libevent-dev libfontconfig1-dev libcap-dev libpulse-dev libudev-dev \
+    libpci-dev libnss3-dev libasound2-dev libegl1-mesa-dev libasound2-dev libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libnspr4-dev libcups2-dev \
+    libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev \
+    libmng-dev libwebp-dev libvpx-dev \
+    libclang-dev python3 python3-html5lib libxshmfence-dev libxkbfile-dev libbluetooth-dev \
+    libsctp-dev libsnappy-dev libharfbuzz-dev libva-dev && \
+    apt-get remove -y cmake && \
+    \
+    apt-get -y autoremove && \
+    apt-get -y autoclean && \
+    apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN \
+    git clone https://github.com/Kitware/CMake.git && \
+    cd CMake && \
+    ./bootstrap && \
+    make && \
+    make install
+
+COPY toolchain.cmake /root/toolchain.cmake
