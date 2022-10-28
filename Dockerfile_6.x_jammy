@@ -39,7 +39,7 @@ RUN \
 
 RUN \
     cd /opt && \
-    if [ "$TARGETARCH" -ne "arm64" ]; then \
+    if [ "$TARGETARCH" != "arm64" ]; then \
         tar xvfp /root/Qt-amd64-$QTVER.tar.xz; \
     fi && \
     rm /root/Qt-amd64-$QTVER.tar.xz
@@ -52,3 +52,4 @@ RUN \
 
 ENV PATH="${PATH}:/opt/Qt-$TARGETARCH-$QTVER/bin:/opt/Qt-$TARGETARCH-$QTVER/libexec"
 ENV QT_HOST_PATH="/opt/Qt-$TARGETARCH-$QTVER/"
+ENV QT_PLUGIN_PATH="/opt/Qt-$TARGETARCH-$QTVER/plugins"
