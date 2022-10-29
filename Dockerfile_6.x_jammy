@@ -45,6 +45,10 @@ RUN \
     rm /root/Qt-amd64-$QTVER.tar.xz
 
 RUN \
+    echo "/opt/Qt-$TARGETARCH-$QTVER/lib" >> /etc/ld.so.conf.d/x86_64-linux-gnu.conf \
+ && ldconfig
+
+RUN \
     apt-get -y autoremove \
  && apt-get -y autoclean \
  && apt-get -y clean \
