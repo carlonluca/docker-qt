@@ -69,6 +69,12 @@ RUN \
  && ldconfig
 
 RUN \
+    rm -f /root/Qt-amd64-$QTVER.tar.xz \
+ && rm -f /root/Qt-arm64-$QTVER.tar.xz \
+ && rm -f /root/Qt-and-armv7a-$QTVER.tar.xz \
+ && rm -f /root/Qt-and-armv8a-$QTVER.tar.xz
+
+RUN \
     apt-get -y autoremove \
  && apt-get -y autoclean \
  && apt-get -y clean \
