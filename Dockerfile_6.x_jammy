@@ -17,7 +17,7 @@ RUN \
     apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y install \
-        build-essential cmake freeglut3-dev gdb git iputils-ping libgl1-mesa-dev \
+        build-essential cmake freeglut3-dev gdb git git-lfs iputils-ping libgl1-mesa-dev \
         libglu1-mesa-dev libjpeg-dev libmysqlclient-dev libnss3-dev libopus-dev \
         libpng-dev libsqlite3-dev libssl-dev libx11-xcb-dev libxcb-xinerama0-dev \
         libxcb-xkb-dev libxcb1-dev libxcursor-dev libxi-dev libxml2-dev libxrender-dev \
