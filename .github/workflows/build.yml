@@ -24,3 +24,5 @@ jobs:
             -qt-libpng -xcb -qt-freetype -qt-pcre \
             -qt-harfbuzz -prefix /opt/Qt-amd64-6.4.2 \
             -pkg-config
+          cmake --build . --parallel
+          make install
