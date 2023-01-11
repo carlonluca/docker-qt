@@ -1,0 +1,17 @@
+name: Build
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    container:
+      image: carlonluca/qt-builder:jammy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build
+        shell: bash
+        run: |
+          wget --no-check-certificate "https://download.qt.io/official_releases/qt/6.4/$version/single/qt-everywhere-src-6.4.2.tar.xz"
