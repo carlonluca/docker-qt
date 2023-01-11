@@ -17,7 +17,7 @@ RUN \
     apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y install \
-        build-essential cmake freeglut3-dev gdb git git-lfs iputils-ping libgl1-mesa-dev \
+        build-essential cmake freeglut3-dev gdb iputils-ping libgl1-mesa-dev \
         libglu1-mesa-dev libjpeg-dev libmysqlclient-dev libnss3-dev libopus-dev \
         libpng-dev libsqlite3-dev libssl-dev libx11-xcb-dev libxcb-xinerama0-dev \
         libxcb-xkb-dev libxcb1-dev libxcursor-dev libxi-dev libxml2-dev libxrender-dev \
@@ -33,6 +33,9 @@ RUN \
         libavformat58 libavcodec58 libavutil56 libswresample3 libswscale5 libavdevice58 \
         libmng2 libwebp7 libxcb-xinput0 libwebpmux3 libvpx7 libzstd1 libpcre2-16-0 libxshmfence1 libclang1 \
         libllvm14 libxkbfile1 libbluetooth3 libsctp1 libsnappy1v5 libmd4c0 libmd4c-html0 libharfbuzz0b libminizip1 libb2-1 libva2
+
+# Dev tools
+RUN apt-get -y install git git-lfs ccache
 
 # Android
 RUN export DEBIAN_FRONTEND=noninteractive \
