@@ -2,11 +2,13 @@
 
 The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64/arm64 Linux and armv7a/armv8a Android. This is useful, for instance, for continuous integration:
 
+Articles with more info: https://bugfreeblog.duckdns.org/tag/docker-qt.
+
+Summary of all available images with the included features: https://bugfreeblog.duckdns.org/docker-qt-tags.
+
 ![docker Qt](logo.svg)
 
 ![gitlab CI](shot.png)
-
-Articles with more info: https://bugfreeblog.duckdns.org/tag/docker-qt.
 
 # Images
 
