@@ -13,17 +13,28 @@ cd ..
 mkdir build
 
 cd build
-../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-and-armv7a-$1 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis armeabi-v7a
+../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_armv7 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis armeabi-v7a
 cmake --build . --parallel $(($(nproc)+4))
 cmake --install .
-cp config.summary /opt/Qt-and-armv7a-$1
+cp config.summary /opt/Qt-android-$1/android_armv7
 
 rm -rf *
-../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-and-armv8a-$1 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis arm64-v8a
+../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_arm64_v8a -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis arm64-v8a
 cmake --build . --parallel $(($(nproc)+4))
 cmake --install .
-cp config.summary /opt/Qt-and-armv8a-$1
+cp config.summary /opt/Qt-android-$1/android_arm64_v8a
+
+rm -rf *
+../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_x86 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis x86
+cmake --build . --parallel $(($(nproc)+4))
+cmake --install .
+cp config.summary /opt/Qt-android-$1/android_x86
+
+rm -rf *
+../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_x86_64 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis x86_64
+cmake --build . --parallel $(($(nproc)+4))
+cmake --install .
+cp config.summary /opt/Qt-android-$1/android_x86_64
 
 cd /opt
-tar cvfpJ /root/export/Qt-and-armv8a-$1.tar.xz Qt-and-armv8a-$1
-tar cvfpJ /root/export/Qt-and-armv7a-$1.tar.xz Qt-and-armv7a-$1
+tar cvfpJ /root/export/Qt-android-$1.tar.xz Qt-android-$1
