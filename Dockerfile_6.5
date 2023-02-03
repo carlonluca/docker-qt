@@ -1,4 +1,4 @@
-FROM carlonluca/appimage-builder:jammy
+FROM carlonluca/qt-dev-base:jammy
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 WORKDIR /root
 
@@ -7,21 +7,20 @@ ARG QTVER
 
 COPY qt_export/Qt-amd64-$QTVER.tar.xz /root/
 COPY qt_export/Qt-arm64-$QTVER.tar.xz /root/
-COPY qt_export/Qt-and-armv7a-$QTVER.tar.xz /root/
-COPY qt_export/Qt-and-armv8a-$QTVER.tar.xz /root/
+COPY qt_export/Qt-android-$QTVER.tar.xz /root/
 
 COPY builder/toolchain.cmake /root/
 
-
-
 # Android
-
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 \
+ && apt-get update \
+ && apt-get install -y openjdk-11-jdk sdkmanager \
  && sdkmanager "platforms;android-31" "platform-tools" "build-tools;31.0.0" \
  && export ANDROID_SDK_ROOT=/opt/android-sdk \
  && sdkmanager "ndk;25.1.8937393" \
  && export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393 \
  && yes | sdkmanager --licenses
-
 
 ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393
 
@@ -35,10 +34,8 @@ RUN \
     if [ "$TARGETARCH" != "arm64" ]; then \
         tar xvfp /root/Qt-amd64-$QTVER.tar.xz; \
         rm /root/Qt-amd64-$QTVER.tar.xz; \
-        tar xvfp /root/Qt-and-armv7a-$QTVER.tar.xz; \
-        rm /root/Qt-and-armv7a-$QTVER.tar.xz; \
-        tar xvfp /root/Qt-and-armv8a-$QTVER.tar.xz; \
-        rm /root/Qt-and-armv8a-$QTVER.tar.xz; \
+        tar xvfp /root/Qt-android-$QTVER.tar.xz; \
+        rm /root/Qt-android-$QTVER.tar.xz; \
     fi
 
 RUN \
@@ -48,8 +45,7 @@ RUN \
 RUN \
     rm -f /root/Qt-amd64-$QTVER.tar.xz \
  && rm -f /root/Qt-arm64-$QTVER.tar.xz \
- && rm -f /root/Qt-and-armv7a-$QTVER.tar.xz \
- && rm -f /root/Qt-and-armv8a-$QTVER.tar.xz
+ && rm -f /root/Qt-android-$QTVER.tar.xz
 
 RUN \
     apt-get -y autoremove \
