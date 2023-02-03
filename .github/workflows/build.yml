@@ -26,3 +26,10 @@ jobs:
           cmake --build . --parallel $(($(nproc)+4))
           cmake --install .
           cp config.summary /opt/Qt-amd64-$version/
+          cd /opt
+          tar cvfpJ Qt-amd64-$version.tar.xz /opt/Qt-amd64-$version
+      - name: Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: Qt-amd64
+          path: /opt/Qt-amd64-$version.tar.xz
