@@ -14,8 +14,8 @@ Summary of all available images with the included features: https://bugfreeblog.
 
 Images for some Qt versions are already available here:
 
-* https://hub.docker.com/repository/docker/carlonluca/qt-builder
-* https://hub.docker.com/repository/docker/carlonluca/qt-dev
+* https://hub.docker.com/r/carlonluca/qt-builder
+* https://hub.docker.com/r/carlonluca/qt-dev
 
 The **qt-builder** is an image to be used to cross-build Qt itself for the available platforms. It includes all the headers and the libraries needed to build and crossbuild Qt from its sources. By using the build_* scripts, Qt tarballs are exported. The builder in docker hub is only built for the x64 architecture.
 
@@ -23,42 +23,13 @@ The **qt-dev** images are images that include prebuilt Qt installations. It incl
 
 # Qt Builder
 
-Building the Qt builder is straightforward. This is a small changelog of the versions (referring to the tags):
+Before trying to build a Qt version, you'll need a proper builder image. The builder image includes all the deps needed to complete the build process. At the moment, I created two builders: one based on focal and one based on jammy. The one based on focal must be used to build Qt 5, the one based on jammy is used to build Qt 6.
 
-* 1: first version that builds Qt < 6.2.0;
-* 2: includes an updated cmake that builds Qt >= 6.2.0.
-
-## Qt 5
-
-To build Qt 5.x for x64:
-
-```
-docker run --rm -it --name qt-builder -v $PWD/qt_export:/root/export \
-    -v $(pwd)/builder/build_amd64.sh:/build_amd64.sh carlonluca/qt-builder:focal \
-    /build_amd64.sh 5.12.11 https://download.qt.io/official_releases/qt/5.12/5.12.11/single/
-```
-
-to build Qt 5.x for arm64:
-
-```
-docker run --rm -it --name qt-builder -v $PWD/qt_export:/root/export \
-    -v $(pwd)/builder/build_aarch64.sh:/build_aarch64.sh carlonluca/qt-builder:focal \
-    /build_aarch64.sh 5.12.11 https://download.qt.io/official_releases/qt/5.12/5.12.11/single/
-```
-
-## Qt 6
-
-Qt 6 requires a different crossbuild procedure, so build both archs at the same time:
-
-```
-docker run --rm -it --name qt-builder -v $PWD/qt_export:/root/export \
-    -v $(pwd)/builder/build_qt6.sh:/build_qt6.sh carlonluca/qt-builder:focal \
-    /build_qt6.sh 6.1.2 https://download.qt.io/official_releases/qt/6.1/6.1.2/single/
-```
+Once the builder is available, you can use the builder to run the build of Qt itself. Refer to the build scripts at this point. Once the build script is done, you should find Qt packages available in the export directory. Those packages are used to create the dev images.
 
 # Qt Dev Image
 
-Once packages are ready in the qt_export directory you can build the dev image.
+Once packages are ready in the qt_export directory you can build the dev image. Use the dockerfiles in the root directory to build this image, according to the examples below.
 
 ## Qt 5
 
