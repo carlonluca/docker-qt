@@ -54,6 +54,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 # Cleanup
 RUN \
