@@ -7,23 +7,50 @@ ARG QTVER
 
 COPY qt_export/Qt-amd64-$QTVER.tar.xz /root/
 COPY qt_export/Qt-arm64-$QTVER.tar.xz /root/
-COPY qt_export/Qt-and-armv7a-$QTVER.tar.xz /root/
-COPY qt_export/Qt-and-armv8a-$QTVER.tar.xz /root/
+COPY qt_export/Qt-android-$QTVER.tar.xz /root/
 
 COPY builder/toolchain.cmake /root/
 
+RUN \
+    export DEBIAN_FRONTEND=noninteractive && \
+    apt-get -y update && \
+    apt-get -y upgrade && \
+    apt-get -y install \
+        build-essential cmake freeglut3-dev gdb iputils-ping libgl1-mesa-dev \
+        libglu1-mesa-dev libjpeg-dev libmysqlclient-dev libnss3-dev libopus-dev \
+        libpng-dev libsqlite3-dev libssl-dev libx11-xcb-dev libxcb-xinerama0-dev \
+        libxcb-xkb-dev libxcb1-dev libxcursor-dev libxi-dev libxml2-dev libxrender-dev \
+        libxslt-dev lzip mesa-common-dev nano perl python3 valgrind wget zlib1g-dev \
+        '^libxcb.*-dev' libxkbcommon-dev libxkbcommon-x11-dev wget libwayland-dev ninja-build && \
+    apt-get -y install flex bison gperf libicu-dev libxslt-dev ruby && \
+    apt-get -y install libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev \
+        libxtst-dev libxss-dev libdbus-1-dev libevent-dev libfontconfig1-dev \
+        libcap-dev libpulse-dev libudev-dev libpci-dev libnss3-dev libasound2-dev \
+        libegl1-mesa-dev gperf bison nodejs && \
+    apt-get -y install libasound2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+        libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev libcups2-dev \
+        libavformat58 libavcodec58 libavutil56 libswresample3 libswscale5 libavdevice58 \
+        libmng2 libwebp7 libxcb-xinput0 libwebpmux3 libvpx7 libzstd1 libpcre2-16-0 libxshmfence1 libclang1 \
+        libllvm14 libxkbfile1 libbluetooth3 libsctp1 libsnappy1v5 libmd4c0 libmd4c-html0 libharfbuzz0b libminizip1 libb2-1 libva2
 
+# Dev tools
+RUN apt-get -y install git git-lfs ccache
 
 # Android
-
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 \
+ && apt-get install -y openjdk-11-jdk sdkmanager \
  && sdkmanager "platforms;android-31" "platform-tools" "build-tools;31.0.0" \
  && export ANDROID_SDK_ROOT=/opt/android-sdk \
  && sdkmanager "ndk;25.1.8937393" \
  && export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393 \
  && yes | sdkmanager --licenses
 
-
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 RUN \
     cd /opt && \
@@ -35,10 +62,8 @@ RUN \
     if [ "$TARGETARCH" != "arm64" ]; then \
         tar xvfp /root/Qt-amd64-$QTVER.tar.xz; \
         rm /root/Qt-amd64-$QTVER.tar.xz; \
-        tar xvfp /root/Qt-and-armv7a-$QTVER.tar.xz; \
-        rm /root/Qt-and-armv7a-$QTVER.tar.xz; \
-        tar xvfp /root/Qt-and-armv8a-$QTVER.tar.xz; \
-        rm /root/Qt-and-armv8a-$QTVER.tar.xz; \
+        tar xvfp /root/Qt-android-$QTVER.tar.xz; \
+        rm /root/Qt-android-$QTVER.tar.xz; \
     fi
 
 RUN \
@@ -48,8 +73,7 @@ RUN \
 RUN \
     rm -f /root/Qt-amd64-$QTVER.tar.xz \
  && rm -f /root/Qt-arm64-$QTVER.tar.xz \
- && rm -f /root/Qt-and-armv7a-$QTVER.tar.xz \
- && rm -f /root/Qt-and-armv8a-$QTVER.tar.xz
+ && rm -f /root/Qt-android-$QTVER.tar.xz
 
 RUN \
     apt-get -y autoremove \
