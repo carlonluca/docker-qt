@@ -39,3 +39,14 @@ RUN \
  && apt-get -y autoclean \
  && apt-get -y clean \
  && rm -rf /var/lib/apt/lists/*
+
+RUN \
+    cd \
+ && git clone https://github.com/openssl/openssl.git \
+ && cd openssl \
+ && git checkout OpenSSL_1_1_1t \
+ && ./config \
+ && make -j$(nproc) \
+ && make install \
+ && cd .. \
+ && rm -rf openssl
