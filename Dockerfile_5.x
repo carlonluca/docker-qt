@@ -60,6 +60,10 @@ ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/21.4.7075529
 
 RUN \
     cd /opt && \
+    git clone --verbose --depth 1 https://github.com/KDAB/android_openssl
+
+RUN \
+    cd /opt && \
     tar xvfp /root/Qt-arm64-$QTVER.tar.xz && \
     rm /root/Qt-arm64-$QTVER.tar.xz
 
@@ -90,3 +94,4 @@ RUN \
 ENV PATH="${PATH}:/opt/Qt-$TARGETARCH-$QTVER/bin:/opt/Qt-$TARGETARCH-$QTVER/libexec"
 ENV QT_HOST_PATH="/opt/Qt-$TARGETARCH-$QTVER/"
 ENV QT_PLUGIN_PATH="/opt/Qt-$TARGETARCH-$QTVER/plugins"
+ENV OPENSSL_ROOT_DIR="/opt/android_openssl/ssl_1.1"
