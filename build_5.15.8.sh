@@ -54,6 +54,7 @@ set -e
 
 version=5.15.8-lts-lgpl
 
+git clone --verbose --depth 1 https://github.com/KDAB/android_openssl /opt/android-openssl
 git clone --verbose --depth 1 --branch v$version https://code.qt.io/qt/qt5.git
 cd qt5
 perl init-repository --module-subset=default,-qtwebengine
@@ -61,7 +62,7 @@ cd ..
 
 mkdir build
 cd build
-../qt5/configure -opensource -confirm-license -release -skip webengine -nomake tests -nomake examples -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -no-warnings-are-errors -xplatform android-clang -prefix /opt/Qt-android-$version -disable-rpath -android-ndk-host linux-x86_64
+../qt5/configure -opensource -confirm-license -release -skip webengine -nomake tests -nomake examples -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -no-warnings-are-errors -xplatform android-clang -prefix /opt/Qt-android-$version -disable-rpath -android-ndk-host linux-x86_64 --recheck -openssl-runtime -I /opt/android-openssl/ssl_1.1/include
 make -j $(($(nproc)+4))
 make install
 cp config.summary /opt/Qt-android-$version
