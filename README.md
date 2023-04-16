@@ -1,6 +1,6 @@
 # Intro
 
-The repo contains the code needed to create images to build and crossbuild Qt 5 and 6 for x64/arm64 Linux and armv7a/armv8a Android. This is useful, for instance, for continuous integration:
+The repo contains the code needed to create docker images to build and crossbuild Qt 5 and 6 and to build and crossbuild Qt based apps. This is useful to create images for continuous integration or to build for embedded devices.
 
 Articles with more info: https://bugfreeblog.duckdns.org/tag/docker-qt.
 
@@ -10,6 +10,8 @@ Summary of all available images with the included features: https://bugfreeblog.
 
 ![gitlab CI](shot.png)
 
+Qt can be built from the sources (this may need a lot of time) or can be downloaded from the Qt web server. Unfortuantely, Qt does not always keep all Qt versions, so it may not always be possible to download Qt, and rebuilding is the only chance.
+
 # Images
 
 Images for some Qt versions are already available here:
@@ -17,9 +19,9 @@ Images for some Qt versions are already available here:
 * https://hub.docker.com/r/carlonluca/qt-builder
 * https://hub.docker.com/r/carlonluca/qt-dev
 
-The **qt-builder** is an image to be used to cross-build Qt itself for the available platforms. It includes all the headers and the libraries needed to build and crossbuild Qt from its sources. By using the build_* scripts, Qt tarballs are exported. The builder in docker hub is only built for the x64 architecture.
+The **qt-builder** is an image to be used to cross-build Qt itself for the available platforms. It includes all the headers and the libraries needed to build and crossbuild Qt from its sources. By using the build_* scripts, Qt tarballs are exported. The builder in docker hub is only built for the x64 architecture. The arm builds are all created by crosscompiling.
 
-The **qt-dev** images are images that include prebuilt Qt installations. It includes all the deps needed to build and run Qt apps. This image is available for two archs in docker hub: the arm64 version only includes the arm64 build of Qt, the x64 version includes the x64 build and the Android builds.
+The **qt-dev** images are images that include prebuilt Qt installations. They include all the deps needed to build and run Qt apps. These images available for two archs in docker hub: the arm64 version only includes the arm64 build of Qt, the x64 version includes the x64 build and the Android builds. NOTE: not all these images are identical, but the Qt installation is typically in /opt.
 
 # Qt Builder
 
@@ -29,12 +31,14 @@ Once the builder is available, you can use the builder to run the build of Qt it
 
 # Qt Dev Image
 
-Once packages are ready in the qt_export directory you can build the dev image. Use the dockerfiles in the root directory to build this image, according to the examples below.
+Once packages are ready in the export directory you can build the dev image. Use the dockerfiles in the root directory to build this image, according to the examples below.
+
+Images evolved in time. In this page I try to keep track of images and of what each immage support: https://bugfreeblog.duckdns.org/docker-qt-tags.
 
 ## Qt 5
 
 ```
-docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t ... . -f Dockerfile_5.15.2
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 --build-arg QTVER=5.15.2 -t ... . -f Dockerfile_5.x .
 ```
 
 ## Qt 6
