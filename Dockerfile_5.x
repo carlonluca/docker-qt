@@ -60,7 +60,10 @@ ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/21.4.7075529
 
 RUN \
     cd /opt && \
-    git clone --verbose --depth 1 https://github.com/KDAB/android_openssl
+    git clone --verbose https://github.com/KDAB/android_openssl /opt/android-openssl && \
+    cd /opt/android-openssl && \
+    git checkout 8597b4510703ee6c1c9ee25ca771d7b848090102 && \
+    cd -
 
 RUN \
     cd /opt && \

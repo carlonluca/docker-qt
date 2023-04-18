@@ -54,7 +54,11 @@ set -e
 
 version=5.15.2
 
-git clone --verbose --depth 1 https://github.com/KDAB/android_openssl /opt/android-openssl
+git clone --verbose https://github.com/KDAB/android_openssl /opt/android-openssl
+cd /opt/android-openssl
+git checkout 8597b4510703ee6c1c9ee25ca771d7b848090102
+cd -
+
 git clone --verbose --depth 1 --branch v$version https://code.qt.io/qt/qt5.git
 cd qt5
 perl init-repository --module-subset=default,-qtwebengine
