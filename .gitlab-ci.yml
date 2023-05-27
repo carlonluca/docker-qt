@@ -4,6 +4,8 @@ variables:
 stages:
   - test_642_linux
   - test_642_android
+  - test_651_linux
+  - test_651_android
 
 Test_642_linux:
   stage: test_642_linux
@@ -27,5 +29,30 @@ Test_642_android:
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.4.2/bin/qt-cmake ..
+    - make
+    - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
+
+Test_651_linux:
+  stage: test_651_linux
+  image:
+    name: "carlonluca/qt-dev:6.5.1"
+    entrypoint: [""]
+  script:
+    - cd tests/Fall
+    - mkdir build
+    - cd build
+    - /opt/Qt-amd64-6.5.1/bin/qt-cmake ..
+    - make
+
+Test_651_android:
+  stage: test_651_android
+  image:
+    name: "carlonluca/qt-dev:6.5.1"
+    entrypoint: [""]
+  script:
+    - cd tests/Fall
+    - mkdir build
+    - cd build
+    - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
     - make
     - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
