@@ -47,6 +47,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 \
  && apt-get install -y openjdk-11-jdk sdkmanager \
  && sdkmanager "platforms;android-31" "platform-tools" "build-tools;31.0.0" \
+ && sdkmanager "platforms;android-33" "platform-tools" "build-tools;33.0.0" \
  && export ANDROID_SDK_ROOT=/opt/android-sdk \
  && sdkmanager "ndk;25.1.8937393" \
  && export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393
