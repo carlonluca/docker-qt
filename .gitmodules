@@ -1,0 +1,3 @@
+[submodule "tests/Fall"]
+	path = tests/Fall
+	url = https://github.com/carlonluca/Fall.git
