@@ -33,13 +33,13 @@ cmake --install .
 cp config.summary /opt/Qt-android-$1/android_arm64_v8a
 
 rm -rf *
-../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_x86 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis x86 -- -DOPENSSL_INCLUDE_DIR=/root/android_openssl/ssl_3/include -DOPENSSL_CRYPTO_LIBRARY=/root/android_openssl/ssl_3/x86
+../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_x86 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis x86 -- -DOPENSSL_INCLUDE_DIR=/root/android_openssl/ssl_3/include -DOPENSSL_LIBRARIES=/root/android_openssl/ssl_3/x86
 cmake --build . --parallel $(($(nproc)+4))
 cmake --install .
 cp config.summary /opt/Qt-android-$1/android_x86
 
 rm -rf *
-../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_x86_64 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis x86_64 -- -DOPENSSL_INCLUDE_DIR=/root/android_openssl/ssl_3/include -DOPENSSL_CRYPTO_LIBRARY=/root/android_openssl/ssl_3/x86_64
+../qt5/configure -release -nomake examples -nomake tests -platform android-clang -prefix /opt/Qt-android-$1/android_x86_64 -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path /opt/Qt-amd64-$1 -android-abis x86_64 -- -DOPENSSL_INCLUDE_DIR=/root/android_openssl/ssl_3/include -DOPENSSL_LIBRARIES=/root/android_openssl/ssl_3/x86_64
 cmake --build . --parallel $(($(nproc)+4))
 cmake --install .
 cp config.summary /opt/Qt-android-$1/android_x86_64
