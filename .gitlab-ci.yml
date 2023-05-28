@@ -28,7 +28,7 @@ Test_642:
     - cd ../../SslCheck
     - mkdir build
     - cd build
-    - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
+    - /opt/Qt-and-armv7a-6.4.2/bin/qt-cmake ..
 
 Test_642_cleanup:
   stage: test_642_cleanup
