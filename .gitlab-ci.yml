@@ -6,6 +6,7 @@ stages:
   - test_642_android
   - test_651_linux
   - test_651_android
+  - cleanup
 
 Test_642_linux:
   stage: test_642_linux
@@ -64,3 +65,9 @@ Test_651_android:
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
+
+Clean:
+  stage: cleanup
+  script:
+    - docker rm carlonluca/qt-dev:6.4.2
+    - docker rm carlonluca/qt-dev:6.5.1
