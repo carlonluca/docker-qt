@@ -3,7 +3,9 @@ variables:
 
 stages:
   - test_642
+  - test_642_cleanup
   - test_651
+  - test_651_cleanup
 
 Test_642:
   stage: test_642
@@ -27,7 +29,10 @@ Test_642:
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
-  after_script:
+
+Test_642_cleanup:
+  stage: test_642_cleanup
+  script:
     - docker image rm carlonluca/qt-dev:6.4.2 || true
 
 Test_651:
@@ -52,5 +57,8 @@ Test_651:
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
-  after_script:
+
+Test_651_cleanup:
+  stage: test_651_cleanup
+  script:
     - docker image rm carlonluca/qt-dev:6.5.1 || true
