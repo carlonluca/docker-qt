@@ -2,10 +2,40 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 stages:
+  - test_5158
+  - test_5158_cleanup
   - test_642
   - test_642_cleanup
   - test_651
   - test_651_cleanup
+
+Test_5158:
+  stage: test_5158
+  image:
+    name: "carlonluca/qt-dev:5.15.8-lts-lgpl"
+    entrypoint: [""]
+  script:
+    - cd tests/Fall
+    - mkdir build
+    - cd build
+    - /opt/Qt-amd64-5.15.8-lts-lgpl/bin/qt-cmake ..
+    - make
+    - cd ..
+    - rm -rf build
+    - mkdir build
+    - cd build
+    - /opt/Qt-and-armv7a-5.15.8-lts-lgpl/bin/qt-cmake ..
+    - make
+    - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
+    - cd ../../SslCheck
+    - mkdir build
+    - cd build
+    - /opt/Qt-and-armv7a-5.15.8-lts-lgpl/bin/qt-cmake ..
+
+Test_5158_cleanup:
+  stage: test_5158_cleanup
+  script:
+    - docker image rm carlonluca/qt-dev:5.15.8-lts-lgpl || true
 
 Test_642:
   stage: test_642
