@@ -50,13 +50,13 @@ Test_651:
     - rm -rf build
     - mkdir build
     - cd build
-    - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
+    - /opt/Qt-android-6.5.1/android_x86/bin/qt-cmake ..
     - make
     - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
     - cd ../../SslCheck
     - mkdir build
     - cd build
-    - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
+    - /opt/Qt-android-6.5.1/android_x86/bin/qt-cmake ..
 
 Test_651_cleanup:
   stage: test_651_cleanup

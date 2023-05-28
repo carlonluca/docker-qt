@@ -21,9 +21,9 @@ for arch in android_armv7 android_arm64_v8a android_x86_64 android_x86; do \
 done && \
 cd /opt && \
 mkdir Qt-android-$0 && \
-ln -s ../qt/$0/android_armv7 Qt-android-$0/android_armv7 &&
-ln -s ../qt/$0/android_arm64_v8a Qt-android-$0/android_arm64_v8a &&
-ln -s ../qt/$0/android_x86 Qt-android-$0/android_x86 &&
-ln -s ../qt/$0/android_x86_64 Qt-android-$0/android_x86_64 &&
+ln -s ./qt/$0/android_armv7 Qt-android-$0/android_armv7 &&
+ln -s ./qt/$0/android_arm64_v8a Qt-android-$0/android_arm64_v8a &&
+ln -s ./qt/$0/android_x86 Qt-android-$0/android_x86 &&
+ln -s ./qt/$0/android_x86_64 Qt-android-$0/android_x86_64 &&
 tar cvfpJ /root/export/Qt-android-$0.tar.xz Qt-android-$0 qt
 ' $version
