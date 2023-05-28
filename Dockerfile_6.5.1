@@ -12,11 +12,14 @@ COPY qt_export/Qt-android-$QTVER.tar.xz /root/
 COPY builder/toolchain.cmake /root/
 
 # Android
-RUN sdkmanager "platforms;android-33" "platform-tools" "build-tools;33.0.0" \
- && export ANDROID_SDK_ROOT=/opt/android-sdk \
- && sdkmanager "ndk;25.1.8937393" \
- && export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393 \
- && yes | sdkmanager --licenses
+RUN \
+    if [ "$TARGETARCH" != "arm64" ]; then \
+        sdkmanager "platforms;android-33" "platform-tools" "build-tools;33.0.0" \
+ &&     export ANDROID_SDK_ROOT=/opt/android-sdk \
+ &&     sdkmanager "ndk;25.1.8937393" \
+ &&     export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393 \
+ &&     yes | sdkmanager --licenses; \
+    fi
 
 ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/25.1.8937393
 ENV LANG C.UTF-8
