@@ -2,14 +2,11 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 stages:
-  - test_642_linux
-  - test_642_android
-  - test_651_linux
-  - test_651_android
-  - cleanup
+  - test_642
+  - test_651
 
-Test_642_linux:
-  stage: test_642_linux
+Test_642:
+  stage: test_642
   image:
     name: "carlonluca/qt-dev:6.4.2"
     entrypoint: [""]
@@ -19,14 +16,8 @@ Test_642_linux:
     - cd build
     - /opt/Qt-amd64-6.4.2/bin/qt-cmake ..
     - make
-
-Test_642_android:
-  stage: test_642_android
-  image:
-    name: "carlonluca/qt-dev:6.4.2"
-    entrypoint: [""]
-  script:
-    - cd tests/Fall
+    - cd ..
+    - rm -rf build
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.4.2/bin/qt-cmake ..
@@ -36,9 +27,11 @@ Test_642_android:
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
+  after_script:
+    - docker image rm carlonluca/qt-dev:6.4.2 || true
 
-Test_651_linux:
-  stage: test_651_linux
+Test_651:
+  stage: test_651
   image:
     name: "carlonluca/qt-dev:6.5.1"
     entrypoint: [""]
@@ -48,14 +41,8 @@ Test_651_linux:
     - cd build
     - /opt/Qt-amd64-6.5.1/bin/qt-cmake ..
     - make
-
-Test_651_android:
-  stage: test_651_android
-  image:
-    name: "carlonluca/qt-dev:6.5.1"
-    entrypoint: [""]
-  script:
-    - cd tests/Fall
+    - cd ..
+    - rm -rf build
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
@@ -65,9 +52,5 @@ Test_651_android:
     - mkdir build
     - cd build
     - /opt/Qt-and-armv7a-6.5.1/bin/qt-cmake ..
-
-Clean:
-  stage: cleanup
-  script:
-    - docker rm carlonluca/qt-dev:6.4.2
-    - docker rm carlonluca/qt-dev:6.5.1
+  after_script:
+    - docker image rm carlonluca/qt-dev:6.5.1 || true
