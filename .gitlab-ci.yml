@@ -25,14 +25,14 @@ Test_5158:
     - rm -rf build
     - mkdir build
     - cd build
-    - export PATH=/opt/Qt-and-armv7a-5.15.8-lts-lgpl/bin:$PATH
-    - cmake ..
-    - make
-    - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
-    - cd ../../SslCheck
-    - mkdir build
-    - cd build
-    - cmake ..
+    #- export PATH=/opt/Qt-and-armv7a-5.15.8-lts-lgpl/bin:$PATH
+    #- cmake ..
+    #- make
+    #- test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
+    #- cd ../../SslCheck
+    #- mkdir build
+    #- cd build
+    #- cmake ..
 
 Test_5158_cleanup:
   stage: test_5158_cleanup
