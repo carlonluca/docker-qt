@@ -4,6 +4,8 @@ variables:
 stages:
   - test_5158
   - test_5158_cleanup
+  - test_624
+  - test_624_cleanup
   - test_642
   - test_642_cleanup
   - test_651
@@ -38,6 +40,23 @@ Test_5158_cleanup:
   stage: test_5158_cleanup
   script:
     - docker image rm carlonluca/qt-dev:5.15.8-lts-lgpl || true
+
+Test_624:
+  stage: test_624
+  image:
+    name: "carlonluca/qt-dev:6.2.4_jammy"
+    entrypoint: [""]
+  script:
+    - cd tests/Fall
+    - mkdir build
+    - cd build
+    - /opt/Qt-amd64-6.2.4/bin/qt-cmake ..
+    - make
+
+Test_624_cleanup:
+  stage: test_624_cleanup
+  script:
+    - docker image rm carlonluca/qt-dev:6.2.4 || true
 
 Test_642:
   stage: test_642
