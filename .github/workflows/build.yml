@@ -44,7 +44,7 @@ jobs:
   test_642:
     runs-on: ubuntu-22.04
     container:
-      image:
+      image: docker.io/carlonluca/qt-dev:6.4.2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
