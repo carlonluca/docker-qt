@@ -1,0 +1,34 @@
+name: Test
+on: push
+
+jobs:
+  test_5158:
+    runs-on: ubuntu-22.04
+    container:
+      image: docker.io/carlonluca/qt-dev:qt-dev:5.15.8-lts-lgpl
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build
+        shell: bash
+        run: |
+          cd tests/Fall
+          mkdir build
+          cd build
+          export PATH=/opt/Qt-amd64-5.15.8-lts-lgpl/bin:$PATH
+          cmake ..
+          make
+          cd ..
+          rm -rf build
+          mkdir build
+          cd build
+          #export PATH=/opt/Qt-and-armv7a-5.15.8-lts-lgpl/bin:$PATH
+          #cmake ..
+          #make
+          #test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
+          #cd ../../SslCheck
+          #mkdir build
+          #cd build
+          #cmake ..
