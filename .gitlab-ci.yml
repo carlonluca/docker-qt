@@ -2,7 +2,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 stages:
-  - test_5158
+  - test_51510
   - test_5158_cleanup
   - test_624
   - test_624_cleanup
@@ -11,23 +11,23 @@ stages:
   - test_651
   - test_651_cleanup
 
-Test_5158:
-  stage: test_5158
+Test_51510:
+  stage: test_51510
   image:
-    name: "carlonluca/qt-dev:5.15.8-lts-lgpl"
+    name: "carlonluca/qt-dev:5.15.10-lts-lgpl"
     entrypoint: [""]
   script:
     - cd tests/Fall
     - mkdir build
     - cd build
-    - export PATH=/opt/Qt-amd64-5.15.8-lts-lgpl/bin:$PATH
+    - export PATH=/opt/Qt-amd64-5.15.10-lts-lgpl/bin:$PATH
     - cmake ..
     - make
     - cd ..
     - rm -rf build
     - mkdir build
     - cd build
-    #- export PATH=/opt/Qt-and-armv7a-5.15.8-lts-lgpl/bin:$PATH
+    #- export PATH=/opt/Qt-and-armv7a-5.15.10-lts-lgpl/bin:$PATH
     #- cmake ..
     #- make
     #- test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk

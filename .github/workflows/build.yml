@@ -5,7 +5,7 @@ jobs:
   test_5158:
     runs-on: ubuntu-22.04
     container:
-      image: docker.io/carlonluca/qt-dev:5.15.8-lts-lgpl
+      image: docker.io/carlonluca/qt-dev:5.15.10-lts-lgpl
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,7 +17,7 @@ jobs:
           cd tests/Fall
           mkdir build
           cd build
-          export PATH=/opt/Qt-amd64-5.15.8-lts-lgpl/bin:$PATH
+          export PATH=/opt/Qt-amd64-5.15.10-lts-lgpl/bin:$PATH
           cmake ..
           make
           cd ..
