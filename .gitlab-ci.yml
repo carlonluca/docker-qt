@@ -8,8 +8,8 @@ stages:
   - test_624_cleanup
   - test_642
   - test_642_cleanup
-  - test_651
-  - test_651_cleanup
+  - test_653
+  - test_653_cleanup
 
 Test_51510:
   stage: test_51510
@@ -86,10 +86,10 @@ Test_642_cleanup:
   script:
     - docker image rm carlonluca/qt-dev:6.4.2 || true
 
-Test_651:
-  stage: test_651
+Test_653:
+  stage: test_653
   image:
-    name: "carlonluca/qt-dev:6.5.1"
+    name: "carlonluca/qt-dev:6.5.3"
     entrypoint: [""]
   script:
     - cd tests/Fall
@@ -101,15 +101,15 @@ Test_651:
     - rm -rf build
     - mkdir build
     - cd build
-    - /opt/Qt-android-6.5.1/android_x86/bin/qt-cmake ..
+    - /opt/Qt-android-6.5.3/android_x86/bin/qt-cmake ..
     - make
     - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
     - cd ../../SslCheck
     - mkdir build
     - cd build
-    - /opt/Qt-android-6.5.1/android_x86/bin/qt-cmake ..
+    - /opt/Qt-android-6.5.3/android_x86/bin/qt-cmake ..
 
 Test_651_cleanup:
-  stage: test_651_cleanup
+  stage: test_653_cleanup
   script:
-    - docker image rm carlonluca/qt-dev:6.5.1 || true
+    - docker image rm carlonluca/qt-dev:6.5.3 || true
