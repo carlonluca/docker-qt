@@ -95,7 +95,7 @@ Test_653:
     - cd tests/Fall
     - mkdir build
     - cd build
-    - /opt/Qt-amd64-6.5.1/bin/qt-cmake ..
+    - /opt/Qt-amd64-6.5.3/bin/qt-cmake ..
     - make
     - cd ..
     - rm -rf build
