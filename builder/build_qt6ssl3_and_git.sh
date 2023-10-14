@@ -51,4 +51,5 @@ ln -s ../Qt-android-$1/android_armv7 android_armv7
 ln -s ../Qt-android-$1/android_arm64_v8a android_arm64_v8a
 ln -s ../Qt-android-$1/android_x86 android_x86
 ln -s ../Qt-android-$1/android_x86_64 android_x86_64
-tar cvfpJ /root/export/Qt-android-$0.tar.xz Qt-android-$0 qt
+cd ..
+tar cvfpJ /root/export/Qt-android-$1.tar.xz Qt-android-$1 qt
