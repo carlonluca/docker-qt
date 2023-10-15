@@ -1,4 +1,4 @@
-FROM carlonluca/qt-dev-base:jammy
+FROM carlonluca/qt-dev-base:jammy-ossl3
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 WORKDIR /root
 
