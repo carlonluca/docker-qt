@@ -47,9 +47,16 @@ cp config.summary /opt/Qt-android-$1/android_x86_64
 cd /opt
 mkdir -p qt
 cd qt
-ln -s ../Qt-android-$1/android_armv7 android_armv7
-ln -s ../Qt-android-$1/android_arm64_v8a android_arm64_v8a
-ln -s ../Qt-android-$1/android_x86 android_x86
-ln -s ../Qt-android-$1/android_x86_64 android_x86_64
+mkdir $1
+cd $1
+mv ../../Qt-android-$1/android_armv7 .
+mv ../../Qt-android-$1/android_arm64_v8a .
+mv ../../Qt-android-$1/android_x86 .
+mv ../../Qt-android-$1/android_x86_64 .
+cd ../../Qt-android-$1
+ln -s ../qt/$1/android_armv7 android_armv7
+ln -s ../qt/$1/android_arm64_v8a android_arm64_v8a
+ln -s ../qt/$1/android_x86 android_x86
+ln -s ../qt/$1/android_x86_64 android_x86_64
 cd ..
 tar cvfpJ /root/export/Qt-android-$1.tar.xz Qt-android-$1 qt
