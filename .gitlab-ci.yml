@@ -119,27 +119,27 @@ Test_653_cleanup:
 Test_66:
   stage: test_66
   image:
-    name: "carlonluca/qt-dev:6.6.1"
+    name: "carlonluca/qt-dev:6.6.2"
     entrypoint: [""]
   script:
     - cd tests/Fall
     - mkdir build
     - cd build
-    - /opt/Qt-amd64-6.6.1/bin/qt-cmake ..
+    - /opt/Qt-amd64-6.6.2/bin/qt-cmake ..
     - make
     - cd ..
     - rm -rf build
     - mkdir build
     - cd build
-    - /opt/Qt-android-6.6.1/android_x86/bin/qt-cmake ..
+    - /opt/Qt-android-6.6.2/android_x86/bin/qt-cmake ..
     - make
     - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
     - cd ../../SslCheck
     - mkdir build
     - cd build
-    - /opt/Qt-android-6.6.1/android_x86/bin/qt-cmake ..
+    - /opt/Qt-android-6.6.2/android_x86/bin/qt-cmake ..
 
 Test_66_cleanup:
   stage: test_66_cleanup
   script:
-    - docker image rm carlonluca/qt-dev:6.6.1 || true
+    - docker image rm carlonluca/qt-dev:6.6.2 || true
