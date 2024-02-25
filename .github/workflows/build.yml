@@ -119,7 +119,8 @@ jobs:
           mkdir build
           cd build
           /opt/qt/6.6.2/android_arm64_v8a/bin/qt-cmake ..
-          make
+          cmake --build .
+          androiddeployqt" --input android-Fall-deployment-settings.json --output android-build --android-platform android-34 --jdk /usr/lib/jvm/java-17-temurin --gradle
           test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
           cd ../../SslCheck
           mkdir build
