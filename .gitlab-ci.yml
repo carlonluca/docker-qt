@@ -3,15 +3,10 @@ variables:
 
 stages:
   - test_51510
-  - test_5158_cleanup
   - test_624
-  - test_624_cleanup
   - test_642
-  - test_642_cleanup
   - test_653
-  - test_653_cleanup
   - test_66
-  - test_66_cleanup
 
 Test_51510:
   stage: test_51510
@@ -38,11 +33,6 @@ Test_51510:
     #- cd build
     #- cmake ..
 
-Test_5158_cleanup:
-  stage: test_5158_cleanup
-  script:
-    - docker image rm carlonluca/qt-dev:5.15.8-lts-lgpl || true
-
 Test_624:
   stage: test_624
   image:
@@ -54,11 +44,6 @@ Test_624:
     - cd build
     - /opt/Qt-amd64-6.2.4/bin/qt-cmake ..
     - make
-
-Test_624_cleanup:
-  stage: test_624_cleanup
-  script:
-    - docker image rm carlonluca/qt-dev:6.2.4 || true
 
 Test_642:
   stage: test_642
@@ -83,11 +68,6 @@ Test_642:
     - cd build
     - /opt/Qt-and-armv7a-6.4.2/bin/qt-cmake ..
 
-Test_642_cleanup:
-  stage: test_642_cleanup
-  script:
-    - docker image rm carlonluca/qt-dev:6.4.2 || true
-
 Test_653:
   stage: test_653
   image:
@@ -111,11 +91,6 @@ Test_653:
     - cd build
     - /opt/Qt-android-6.5.3/android_x86/bin/qt-cmake ..
 
-Test_653_cleanup:
-  stage: test_653_cleanup
-  script:
-    - docker image rm carlonluca/qt-dev:6.5.3 || true
-
 Test_66:
   stage: test_66
   image:
@@ -138,8 +113,3 @@ Test_66:
     - mkdir build
     - cd build
     - /opt/Qt-android-6.6.2/android_x86/bin/qt-cmake ..
-
-Test_66_cleanup:
-  stage: test_66_cleanup
-  script:
-    - docker image rm carlonluca/qt-dev:6.6.2 || true
