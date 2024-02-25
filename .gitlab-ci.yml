@@ -112,4 +112,5 @@ Test_66:
     - cd ../../SslCheck
     - mkdir build
     - cd build
+    - cat /opt/Qt-amd64-6.6.2/config.summary
     - /opt/Qt-android-6.6.2/android_x86/bin/qt-cmake ..
