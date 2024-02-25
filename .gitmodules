@@ -4,3 +4,6 @@
 [submodule "tests/SslCheck/lqtutils"]
 	path = tests/SslCheck/lqtutils
 	url = https://github.com/carlonluca/lqtutils.git
+[submodule "tests/Fall_qt5"]
+	path = tests/Fall_qt5
+	url = https://github.com/carlonluca/Fall.git

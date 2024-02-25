@@ -109,7 +109,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cd tests/Fall
+          cd tests/Fall_qt5
           mkdir build
           cd build
           /opt/Qt-amd64-6.6.2/bin/qt-cmake ..
