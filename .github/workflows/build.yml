@@ -119,7 +119,7 @@ jobs:
           mkdir build
           cd build
           /opt/qt/6.6.2/android_arm64_v8a/bin/qt-cmake ..
-          cmake
+          make
           test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
           cd ../../SslCheck
           mkdir build
