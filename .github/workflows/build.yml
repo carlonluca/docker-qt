@@ -109,7 +109,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cd tests/Fall_qt5
+          cd tests/Fall
           mkdir build
           cd build
           /opt/Qt-amd64-6.6.2/bin/qt-cmake ..
@@ -119,8 +119,7 @@ jobs:
           mkdir build
           cd build
           /opt/qt/6.6.2/android_arm64_v8a/bin/qt-cmake ..
-          cmake --build .
-          androiddeployqt" --input android-Fall-deployment-settings.json --output android-build --android-platform android-34 --jdk /usr/lib/jvm/java-17-temurin --gradle
+          cmake
           test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
           cd ../../SslCheck
           mkdir build
