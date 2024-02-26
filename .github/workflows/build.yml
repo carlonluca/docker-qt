@@ -14,7 +14,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cd tests/Fall
+          cd tests/Fall_qt5
           mkdir build
           cd build
           export PATH=/opt/Qt-amd64-5.15.10-lts-lgpl/bin:$PATH
