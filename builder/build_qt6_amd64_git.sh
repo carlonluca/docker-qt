@@ -10,10 +10,11 @@ cd ..
 mkdir build
 
 cd build
-../qt5/configure -release -nomake examples -nomake tests -no-zstd -webengine-proprietary-codecs -prefix /opt/Qt-amd64-$1
+../qt5/configure -release -nomake examples -nomake tests -no-zstd -webengine-proprietary-codecs -prefix /opt/qt/$1
 cmake --build . --parallel $(($(nproc)+4))
 cmake --install .
-cp config.summary /opt/Qt-amd64-$1/
+cp config.summary /opt/qt/$1
 
 cd /opt
-tar cvfpJ /root/export/Qt-amd64-$1.tar.xz Qt-amd64-$1
+ln -s /opt/qt/$1 /opt/Qt-amd64-$1
+tar cvfpJ /root/export/Qt-amd64-$1.tar.xz Qt-amd64-$1 qt
