@@ -47,7 +47,7 @@ cp config.summary /opt/Qt-android-$1/android_x86_64
 cd /opt
 mkdir -p qt
 cd qt
-mkdir $1
+mkdir -p $1
 cd $1
 mv ../../Qt-android-$1/android_armv7 .
 mv ../../Qt-android-$1/android_arm64_v8a .
