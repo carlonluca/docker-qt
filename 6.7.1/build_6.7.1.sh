@@ -1,6 +1,7 @@
 #!/bin/bash
 
-version=6.7.1
+qt_version=6.7.1
+ffmpeg_version=6.1.1
 
 docker run -it --rm --name qt-builder -v $PWD/../qt_export:/root/export \
     -v $(pwd)/../builder/build_qt6_amd64_git_zstd.sh:/build_qt6_amd64.sh carlonluca/qt-builder:jammy-6.7 bash -c '
@@ -14,7 +15,7 @@ apt-get update
 apt-get purge -y libnode72 nodejs
 apt-get install nodejs -y
 /build_qt6_amd64.sh $0
-' $version
+' $qt_version $ffmpeg_version
 
 docker run -it --rm --name qt-builder -v $PWD/../qt_export:/root/export carlonluca/qt-builder:jammy-6.7 bash -c '
 cd /opt && \
@@ -31,8 +32,4 @@ cmake --build . --parallel $(($(nproc)+4)) && \
 cmake --install . && \
 cp config.summary /opt/Qt-arm64-$0/ && \
 cd /opt && \
-tar cvfpJ /root/export/Qt-arm64-$0.tar.xz Qt-arm64-$0' $version
-
-docker run -it --rm --name qt-builder -v $PWD/../qt_export:/root/export \
-    -v $(pwd)/../builder/build_qt6ssl3_and_git.sh:/build_qt6_and.sh carlonluca/qt-builder:jammy-6.7 \
-    /build_qt6_and.sh $version
+tar cvfpJ /root/export/Qt-arm64-$0.tar.xz Qt-arm64-$0' $qt_version $ffmpeg_version
