@@ -34,7 +34,22 @@ git clone --verbose --depth 1 --branch v$qt_version https://code.qt.io/qt/qt5.gi
 cd qt5
 perl init-repository
 
-
+cd qtmultimedia
+patch -p1 << 'EOF'
+diff --git a/src/plugins/multimedia/ffmpeg/CMakeLists.txt b/src/plugins/multimedia/ffmpeg/CMakeLists.txt
+index 68a09b20f..c5a6e87d0 100644
+--- a/src/plugins/multimedia/ffmpeg/CMakeLists.txt
++++ b/src/plugins/multimedia/ffmpeg/CMakeLists.txt
+@@ -80,6 +80,8 @@ qt_internal_add_plugin(QFFmpegMediaPlugin
+         Qt::CorePrivate
+ )
+ 
++target_link_libraries(QFFmpegMediaPlugin PRIVATE -lz)
++
+ if(DYNAMIC_RESOLVE_OPENSSL_SYMBOLS)
+     if(NOT OPENSSL_INCLUDE_DIR AND OPENSSL_ROOT_DIR)
+         set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
+EOF
 
 cd
 mkdir build
