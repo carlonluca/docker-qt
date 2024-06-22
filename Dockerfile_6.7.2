@@ -1,0 +1,45 @@
+FROM carlonluca/qt-dev-base:jammy-17-34-26.1.10909125
+ENTRYPOINT ["/bin/bash", "-l", "-c"]
+WORKDIR /root
+
+ARG TARGETARCH
+ARG QTVER
+
+COPY qt_export/Qt-amd64-$QTVER.tar.xz /root/
+COPY qt_export/Qt-arm64-$QTVER.tar.xz /root/
+COPY qt_export/Qt-android-$QTVER.tar.xz /root/
+
+COPY builder/toolchain.cmake /root/
+    
+RUN \
+    cd /opt && \
+    tar xvfp /root/Qt-arm64-$QTVER.tar.xz && \
+    rm /root/Qt-arm64-$QTVER.tar.xz
+
+RUN \
+    cd /opt && \
+    if [ "$TARGETARCH" != "arm64" ]; then \
+        tar xvfp /root/Qt-amd64-$QTVER.tar.xz; \
+        rm /root/Qt-amd64-$QTVER.tar.xz; \
+        tar xvfp /root/Qt-android-$QTVER.tar.xz; \
+        rm /root/Qt-android-$QTVER.tar.xz; \
+    fi
+
+RUN \
+    echo "/opt/Qt-$TARGETARCH-$QTVER/lib" >> /etc/ld.so.conf.d/x86_64-linux-gnu.conf \
+ && ldconfig
+
+RUN \
+    rm -f /root/Qt-amd64-$QTVER.tar.xz \
+ && rm -f /root/Qt-arm64-$QTVER.tar.xz \
+ && rm -f /root/Qt-android-$QTVER.tar.xz
+
+RUN \
+    apt-get -y autoremove \
+ && apt-get -y autoclean \
+ && apt-get -y clean \
+ && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="${PATH}:/opt/Qt-$TARGETARCH-$QTVER/bin:/opt/Qt-$TARGETARCH-$QTVER/libexec"
+ENV QT_HOST_PATH="/opt/Qt-$TARGETARCH-$QTVER/"
+ENV QT_PLUGIN_PATH="/opt/Qt-$TARGETARCH-$QTVER/plugins"
