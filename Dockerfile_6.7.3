@@ -26,6 +26,10 @@ RUN \
     fi
 
 RUN \
+    apt-get update \
+ && apt-get install -y libwebpdemux2
+
+RUN \
     echo "/opt/Qt-$TARGETARCH-$QTVER/lib" >> /etc/ld.so.conf.d/x86_64-linux-gnu.conf \
  && ldconfig
 
