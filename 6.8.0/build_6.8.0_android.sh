@@ -3,7 +3,7 @@
 qt_version="6.8.0"
 ffmpeg_version="7.0.2"
 
-docker run -it --rm --name qt-builder2 -v $PWD/../qt_export:/root/export carlonluca/qt-builder:jammy-6.7 bash -c '
+docker run -it --rm --name qt-builder2 -v $PWD/../qt_export:/root/export carlonluca/qt-builder:noble-17-34-26.1.10909125 bash -c '
 #!/bin/bash
 set -e
 
@@ -61,6 +61,7 @@ cd build
 rm -rf *
 ../qt5/configure -verbose -release -nomake examples -nomake tests -platform android-clang \
     -prefix /opt/Qt-android-$qt_version/android_armv7 \
+    -skip qtwebengine \
     -android-ndk $ANDROID_NDK_ROOT \
     -android-sdk $ANDROID_SDK_ROOT \
     -qt-host-path /opt/Qt-amd64-$qt_version \
@@ -90,6 +91,7 @@ cd build
 rm -rf *
 ../qt5/configure -verbose -release -nomake examples -nomake tests -platform android-clang \
     -prefix /opt/Qt-android-$qt_version/android_arm64_v8a \
+    -skip qtwebengine \
     -android-ndk $ANDROID_NDK_ROOT \
     -android-sdk $ANDROID_SDK_ROOT \
     -qt-host-path /opt/Qt-amd64-$qt_version \
@@ -119,6 +121,7 @@ cd build
 rm -rf *
 ../qt5/configure -verbose -release -nomake examples -nomake tests -platform android-clang \
     -prefix /opt/Qt-android-$qt_version/android_x86 \
+    -skip qtwebengine \
     -android-ndk $ANDROID_NDK_ROOT \
     -android-sdk $ANDROID_SDK_ROOT \
     -qt-host-path /opt/Qt-amd64-$qt_version \
@@ -148,6 +151,7 @@ cd build
 rm -rf *
 ../qt5/configure -verbose -release -nomake examples -nomake tests -platform android-clang \
     -prefix /opt/Qt-android-$qt_version/android_x86_64 \
+    -skip qtwebengine \
     -android-ndk $ANDROID_NDK_ROOT \
     -android-sdk $ANDROID_SDK_ROOT \
     -qt-host-path /opt/Qt-amd64-$qt_version \

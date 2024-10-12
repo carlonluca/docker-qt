@@ -8,6 +8,7 @@ stages:
   - test_653
   - test_66
   - test_67
+  - test_68
 
 Test_51510:
   stage: test_51510
@@ -137,3 +138,26 @@ Test_67:
     - mkdir build
     - cd build
     - /opt/Qt-android-6.7.3/android_x86/bin/qt-cmake ..
+
+Test_68:
+  stage: test_68
+  image:
+    name: "carlonluca/qt-dev:6.8.0"
+    entrypoint: [""]
+  script:
+    - cd tests/Fall
+    - mkdir build
+    - cd build
+    - /opt/Qt-amd64-6.8.0/bin/qt-cmake ..
+    - make
+    - cd ..
+    - rm -rf build
+    - mkdir build
+    - cd build
+    - /opt/Qt-android-6.8.0/android_x86/bin/qt-cmake ..
+    - make
+    - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
+    - cd ../../SslCheck
+    - mkdir build
+    - cd build
+    - /opt/Qt-android-6.8.0/android_x86/bin/qt-cmake ..

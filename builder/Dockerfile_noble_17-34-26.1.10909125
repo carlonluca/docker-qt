@@ -47,10 +47,9 @@ RUN \
 RUN export DEBIAN_FRONTEND=noninteractive \
  && export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 \
  && apt-get install -y openjdk-17-jdk google-android-cmdline-tools-13.0-installer \
- && sdkmanager "platforms;android-34" "platform-tools" "build-tools;34.0.0" \
+ && yes | sdkmanager --sdk_root=/opt/android-sdk "platforms;android-34" "platform-tools" "build-tools;34.0.0" \
  && export ANDROID_SDK_ROOT=/opt/android-sdk \
- && sdkmanager "ndk;26.1.10909125" \
- && export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/26.1.10909125
+ && yes | sdkmanager --sdk_root=/opt/android-sdk "ndk;26.1.10909125"
 
 # aqt
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
