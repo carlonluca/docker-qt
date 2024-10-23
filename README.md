@@ -35,6 +35,13 @@ Once packages are ready in the export directory you can build the dev image. Use
 
 Images evolved in time. In this page I try to keep track of images and of what each immage support: https://bugfreeblog.duckdns.org/docker-qt-tags.
 
+## AppImage Builder
+
+The images contain [appimage-builder](https://github.com/AppImageCrafters/appimage-builder) to ease creation of AppImage bundles.
+
+> [!NOTE]  
+> On noble based images (eg. Qt 6.8 and above) `appimage-builder` is installed inside a Python virtual env that can be activated with `. /ven/bin/activate`. Read more about using AppImages here https://bugfreeblog.duckdns.org/2023/09/qt-appimage.html.
+
 ## Qt 5
 
 ```
