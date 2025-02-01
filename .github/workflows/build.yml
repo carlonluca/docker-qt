@@ -153,10 +153,10 @@ jobs:
           mkdir build
           cd build
           /opt/qt/6.7.3/android_arm64_v8a/bin/qt-cmake ..
-  test_67:
+  test_68:
     runs-on: ubuntu-24.04
     container:
-      image: docker.io/carlonluca/qt-dev:6.8.1
+      image: docker.io/carlonluca/qt-dev:6.8.2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -168,16 +168,16 @@ jobs:
           cd tests/Fall
           mkdir build
           cd build
-          /opt/Qt-amd64-6.8.1/bin/qt-cmake ..
+          /opt/Qt-amd64-6.8.2/bin/qt-cmake ..
           make
           cd ..
           rm -rf build
           mkdir build
           cd build
-          /opt/qt/6.8.1/android_arm64_v8a/bin/qt-cmake ..
+          /opt/qt/6.8.2/android_arm64_v8a/bin/qt-cmake ..
           make
           test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
           cd ../../SslCheck
           mkdir build
           cd build
-          /opt/qt/6.8.1/android_arm64_v8a/bin/qt-cmake ..
+          /opt/qt/6.8.2/android_arm64_v8a/bin/qt-cmake ..
