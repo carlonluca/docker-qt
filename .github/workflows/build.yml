@@ -174,10 +174,10 @@ jobs:
           rm -rf build
           mkdir build
           cd build
-          qt-cmake ..
+          /opt/qt/6.8.3/android_x86/bin/qt-cmake ..
           make
           test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
           cd ../../SslCheck
           mkdir build
           cd build
-          qt-cmake ..
+          /opt/qt/6.8.3/android_x86/bin/qt-cmake ..
