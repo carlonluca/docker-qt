@@ -24,7 +24,10 @@ RUN \
         libmng2 libwebp7 libxcb-xinput0 libwebpmux3 libvpx9 libzstd1 libpcre2-16-0 libxshmfence1 libclang1 \
         libllvm16t64 libxkbfile1 libbluetooth3 libsctp1 libsnappy1v5 libmd4c0 libmd4c-html0 libharfbuzz0b libharfbuzz-subset0 \
         libminizip1 libb2-1 libva2 && \
-    apt-get install -y protobuf-compiler
+    apt-get install -y protobuf-compiler curl
+
+# webengine
+RUN apt-get install zlib1g-dev libcurl4-openssl-dev libwebpdemux2 -y
 
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
@@ -45,14 +48,14 @@ RUN \
     if [ "$TARGETARCH" != "arm64" ]; then \
         export DEBIAN_FRONTEND=noninteractive \
  &&     export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 \
- &&     yes | sdkmanager --sdk_root=/opt/android-sdk "platforms;android-34" "platform-tools" "build-tools;34.0.0" \
+ &&     yes | sdkmanager --sdk_root=/opt/android-sdk "platforms;android-35" "platform-tools" "build-tools;35.0.0" \
  &&     export ANDROID_SDK_ROOT=/opt/android-sdk \
- &&     yes | sdkmanager --sdk_root=/opt/android-sdk "ndk;26.1.10909125" \
- &&     export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/26.1.10909125 \
+ &&     yes | sdkmanager --sdk_root=/opt/android-sdk "ndk;27.2.12479018" \
+ &&     export ANDROID_NDK_ROOT=/opt/android-sdk/ndk/27.2.12479018 \
  &&     yes | sdkmanager --licenses; \
     fi
 
-ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/26.1.10909125
+ENV ANDROID_NDK_ROOT=/opt/android-sdk/ndk/27.2.12479018
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 

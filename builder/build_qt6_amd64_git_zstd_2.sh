@@ -18,6 +18,8 @@ fi
 
 cd /qt/qt5
 git checkout v$1
+git submodule foreach --recursive git reset --hard
+git submodule foreach --recursive git clean -dxf
 git submodule update --init --recursive
 
 cd /
