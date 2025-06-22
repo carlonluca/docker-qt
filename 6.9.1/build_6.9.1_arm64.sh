@@ -13,6 +13,9 @@ docker run -it --rm --name qt-builder \
     -v $PWD/../qt_export:/root/export \
     -v "$qt_src":/qt \
     carlonluca/qt-builder:noble-17-35-27.2.12479018 bash -c '
+
+set -e
+
 export qtversion=$0
 mkdir -p /opt/qt/$qtversion
 cd /opt/qt/$qtversion
@@ -27,6 +30,8 @@ if [ ! -d /qt/qt5 ]; then
 fi
 
 cd /qt/qt5
+git fetch
+git submodule foreach --recursive git fetch
 git checkout v$qtversion
 git submodule foreach --recursive git reset --hard
 git submodule foreach --recursive git clean -dxf

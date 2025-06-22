@@ -9,11 +9,14 @@
 qt_version=6.9.1
 qt_src=qt-src
 
-docker run --cpuset-cpus="0-15" -it --rm --name qt-builder \
+docker run -it --rm --name qt-builder \
     -v "$PWD/../qt_export":/root/export \
     -v "$qt_src":/qt \
     -v "$(pwd)/../builder/build_qt6_amd64_git_zstd_2.sh:/build_qt6_amd64.sh" \
     carlonluca/qt-builder:noble-17-35-27.2.12479018 bash -c '
+
+set -e
+
 apt-get update
 apt-get install -y ca-certificates curl gnupg
 mkdir -p /etc/apt/keyrings
@@ -31,6 +34,8 @@ if [ ! -d /qt/qt5 ]; then
 fi
 
 cd /qt/qt5
+git fetch
+git submodule foreach --recursive git fetch
 git checkout v$0
 git submodule foreach --recursive git reset --hard
 git submodule foreach --recursive git clean -dxf

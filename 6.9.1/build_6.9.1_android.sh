@@ -8,13 +8,16 @@
 
 qt_version="6.9.1"
 qt_src="qt-src"
-ffmpeg_version="7.1"
+ffmpeg_version="7.1.1"
 
 docker run -it --rm --name qt-builder2 \
     -v $PWD/../qt_export:/root/export \
     -v "$qt_src":/qt \
     carlonluca/qt-builder:noble-17-35-27.2.12479018 \
     bash -c '
+
+set -e
+
 export qt_version="$0"
 export ffmpeg_version="$1"
 export ANDROID_SDK_HOME=$ANDROID_SDK_ROOT
@@ -44,6 +47,8 @@ if [ ! -d /qt/qt5 ]; then
 fi
 
 cd /qt/qt5
+git fetch
+git submodule foreach --recursive git fetch
 git checkout v$qt_version
 git submodule foreach --recursive git reset --hard
 git submodule foreach --recursive git clean -dxf
