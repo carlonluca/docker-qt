@@ -237,3 +237,31 @@ jobs:
           mkdir build
           cd build
           /opt/qt/6.10.2/android_x86/bin/qt-cmake ..
+  test_611:
+    runs-on: ubuntu-24.04
+    container:
+      image: docker.io/carlonluca/qt-dev:6.11.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build
+        shell: bash
+        run: |
+          cd tests/Fall
+          mkdir build
+          cd build
+          qt-cmake ..
+          make
+          cd ..
+          rm -rf build
+          mkdir build
+          cd build
+          /opt/qt/6.11.0/android_x86/bin/qt-cmake ..
+          make
+          test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
+          cd ../../SslCheck
+          mkdir build
+          cd build
+          /opt/qt/6.11.0/android_x86/bin/qt-cmake ..
