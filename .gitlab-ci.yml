@@ -214,7 +214,7 @@ Test_610:
 Test_611:
   stage: test_611
   image:
-    name: "carlonluca/qt-dev:6.11.0"
+    name: "carlonluca/qt-dev:6.11.1"
     entrypoint: [""]
   script:
     - cd tests/Fall
@@ -226,10 +226,10 @@ Test_611:
     - rm -rf build
     - mkdir build
     - cd build
-    - /opt/qt/6.11.0/android_x86/bin/qt-cmake ..
+    - /opt/qt/6.11.1/android_x86/bin/qt-cmake ..
     - make
     - test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
     - cd ../../SslCheck
     - mkdir build
     - cd build
-    - /opt/qt/6.11.0/android_x86/bin/qt-cmake ..
+    - /opt/qt/6.11.1/android_x86/bin/qt-cmake ..
