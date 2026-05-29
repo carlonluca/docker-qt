@@ -214,7 +214,7 @@ Test_610:
 Test_611:
   stage: test_611
   image:
-    name: "carlonluca/qt-dev:6.11.1"
+    name: "carlonluca/qt-dev:6.11.1_resolute"
     entrypoint: [""]
   script:
     - cd tests/Fall

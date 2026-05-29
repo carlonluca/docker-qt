@@ -240,7 +240,7 @@ jobs:
   test_611:
     runs-on: ubuntu-24.04
     container:
-      image: docker.io/carlonluca/qt-dev:6.11.1
+      image: docker.io/carlonluca/qt-dev:6.11.1_resolute
     steps:
       - name: Checkout
         uses: actions/checkout@v3
