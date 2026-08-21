@@ -240,7 +240,7 @@ jobs:
   test_611:
     runs-on: ubuntu-24.04
     container:
-      image: docker.io/carlonluca/qt-dev:6.11.1_resolute
+      image: docker.io/carlonluca/qt-dev:6.11.2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -258,10 +258,10 @@ jobs:
           rm -rf build
           mkdir build
           cd build
-          /opt/qt/6.11.1/android_x86/bin/qt-cmake ..
+          /opt/qt/6.11.2/android_x86/bin/qt-cmake ..
           make
           test -f ./android-build/build/outputs/apk/debug/android-build-debug.apk
           cd ../../SslCheck
           mkdir build
           cd build
-          /opt/qt/6.11.1/android_x86/bin/qt-cmake ..
+          /opt/qt/6.11.2/android_x86/bin/qt-cmake ..
